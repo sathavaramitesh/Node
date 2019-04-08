@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Add Form</h2>
+  <% if (data != ''){ %>
+  	<form class="form-horizontal" action="/editPost/<%= data.id %>" method="post" enctype="multipart/form-data">
+  <% }else{ %>
+  	<form class="form-horizontal" action="/addPost" method="post" enctype="multipart/form-data">
+  <% } %>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="email">Name:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="email" placeholder="Enter Name" name="name" data-validation="length alphanumeric" 
+		 data-validation-length="" 
+		 data-validation-error-msg="User name has to be required" data-validation-allowing=" -/" value="<%= data.name %>">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="email">Email:</label>
+      <div class="col-sm-10">
+        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" data-validation="email" value="<%= data.email %>">
+      </div>
+    </div>
+    <% if(data == ''){ %>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="pwd">Password:</label>
+      <div class="col-sm-10">          
+        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password" >
+      </div>
+    </div>
+    <% } %>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="email">Image:</label>
+      <div class="col-sm-10">
+      	 <% if(data == ''){ %>
+      	 	<input type="file" class="form-control" id="email" placeholder="Enter Image" name="image" data-validation="mime size required" 
+		 data-validation-allowing="jpg, png, jpeg"  
+		 data-validation-error-msg-required="No image selected">
+		 <% }else{ %>
+		 	<input type="file" class="form-control" id="email" placeholder="Enter Image" name="image">
+		 <% } %>
+        
+      </div>
+    </div>
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-default">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+</body>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+<script>
+
+  $.validate({
+    modules : 'location, date, security, file',
+  });
+</script>
+</html>
