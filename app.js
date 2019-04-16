@@ -1,5 +1,5 @@
 var express = require('express');
-
+var mysql = require('mysql');
 var app = express();
 var multer = require('multer')
 var constants = require('constants');
@@ -7,7 +7,7 @@ var constant = require('./config/constants');
 
 
 var port = process.env.PORT || 3000;
-var mongoose = require('mongoose');
+// var mongoose = require('mongoose');
 var passport = require('passport');
 var flash = require('connect-flash');
 var path = require('path');
@@ -27,8 +27,11 @@ app.use(bodyParser.urlencoded({extended: true}));
 /***************Mongodb configuratrion********************/
 var configDB = require('./config/database.js');
 //configuration ===============================================================
-mongoose.connect(configDB.url,{ useNewUrlParser: true }); // connect to our database
-
+// mongoose.connect(configDB.url,{ useNewUrlParser: true }); // connect to our database
+configDB.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+});
 
 require('./config/passport')(passport); // pass passport for configuration
 
