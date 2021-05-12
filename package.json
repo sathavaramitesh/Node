@@ -27,7 +27,7 @@
     "multer": "^1.4.1",
     "mysql": "latest",
     "node-constants": "latest",
-    "nodemailer": "^2.4.1",
+    "nodemailer": "^6.4.16",
     "nodemailer-smtp-transport": "^2.5.0",
     "nodemon": "^1.18.10",
     "numeral": "latest",
